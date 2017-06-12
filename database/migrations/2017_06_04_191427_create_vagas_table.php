@@ -15,7 +15,7 @@ class CreateVagasTable extends Migration
         Schema::create('vagas', function (Blueprint $table) {
             $table->increments('id');
             $table->string('empresa');
-            $table->string('titutlo');
+            $table->string('titulo');
             $table->string('jornada');
             $table->string('contrato');
             $table->string('salario');
@@ -24,6 +24,8 @@ class CreateVagasTable extends Migration
             $table->longText('descricao');
             $table->longText('exigencias');
             $table->longText('beneficios');
+            $table->date('dt_ini');
+            $table->date('dt_fin');
             $table->integer('id_user')->unsigned();;
             $table->foreign('id_user')->references('id')->on('users');
             $table->timestamps();

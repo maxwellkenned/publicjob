@@ -25,5 +25,5 @@
 </div>
 @endsection
 @section('script')
- <script type="text/javascript" src="js/vagas.js"></script>
+ <script type="text/javascript" src="js/vagasAdmin.js"></script>
 @endsection

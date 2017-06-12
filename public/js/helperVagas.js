@@ -15,4 +15,18 @@ $(function(){
             $('#cod_cidades').html('<option value="">-- Escolha um estado --</option>');
         }
     });
+    
+    $('#form').ready(function(){
+        $.ajax({
+            method:'GET',
+            url: 'getestados',
+            dataType: 'json'
+        }).done(function(data){
+                var options = '<option value=""></option>';	
+                $.each(data, function(i, item){
+                    options += '<option value="' + item.abbr + '" id="' + item.id + '" title="' + item.name + '">' + item.abbr + '</option>';
+                });
+                $('#uf').html(options);
+            });
+    });
 });

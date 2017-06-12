@@ -13,7 +13,7 @@
 
     <!-- Styles -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-    <link href="css/cover.css" rel="stylesheet">
+    <link href="/css/cover.css" rel="stylesheet">
 
     <style>
         body {
@@ -47,15 +47,14 @@
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
-                    <li><a href="{{ url('/home') }}">Home</a></li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->
                 <ul class="nav navbar-nav navbar-right">
                     <!-- Authentication Links -->
                     @if (Auth::guest())
-                        <li><a href="{{ url('/login') }}">Login</a></li>
-                        <li><a href="{{ url('/register') }}">Register</a></li>
+                        <li><a href="{{ url('/login') }}">Entrar</a></li>
+                        <li><a href="{{ url('/register') }}">Registrar</a></li>
                     @else
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -63,7 +62,14 @@
                             </a>
 
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
+                                <li><a href="{{ route('registrarcv') }}">Cadastrar Curriculo</a></li>
+                                @if (Isset(Auth::user()->is_admin) && Auth::user()->is_admin)
+                                <li class="divider"></li>
+                                <li><a href="{{ route('getcadastrarVaga') }}"><i class="fa-btn glyphicon glyphicon-list"></i>Cadastrar Vaga</a></li>
+                                <li><a href="{{ url('/register') }}"><i class="fa-btn glyphicon glyphicon-user"></i>Cadastrar usuário</a></li>
+                                @endif
+                                <li class="divider"></li>
+                                <li><a href="{{ url('/logout') }}"><i class="fa-btn glyphicon glyphicon-log-out"></i>Logout</a></li>
                             </ul>
                         </li>
                     @endif
