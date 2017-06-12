@@ -48,7 +48,7 @@ function getVaga(search){
                 html += '<div class="vaga" onmousemove="showBody('+item.id+')" onmouseout="hideBody('+item.id+')" >';
                     html += '<div class="col-md-8 vaga">';
                         html += '<div id="vaga-'+item.id+'" class="cabecalho-vaga" >';
-                                html += '<div class="vaga title-vaga"><h3><a href="#">'+item.titulo+'</a></h3></div>';
+                                html += '<div class="vaga title-vaga"><h3><a href="/vaga/'+item.id+'">'+item.titulo+'</a></h3></div>';
                                 html += '<div class="vaga empresa-vaga">Empresa: &nbsp;'+item.empresa+'</div>';
                                 html += '<div class="vaga salario-vaga">Salário: &nbsp;'+item.salario+'</div>';
                         html += '</div>';

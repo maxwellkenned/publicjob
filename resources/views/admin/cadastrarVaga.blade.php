@@ -45,7 +45,7 @@
               <!--@endif-->
             </select>
           </div>
-          <label for="contrato" class="col-sm-1 control-label">Cidade</label>
+          <label for="cidade" class="col-sm-1 control-label">Cidade</label>
           <div class="col-sm-2">
             <span class="carregando">Aguarde, carregando...</span>
             <select id="cidade" name="cidade" class="form-control" required>

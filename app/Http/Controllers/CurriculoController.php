@@ -7,6 +7,7 @@ use DB;
 use Auth;
 use Storage;
 use Mail;
+use File;
 use App\Http\Models\Curriculo;
 use App\Http\Models\UsuarioVaga;
 use App\Http\Models\Vaga;
@@ -43,11 +44,15 @@ class CurriculoController extends Controller
         $curriculo->estado = $req->input('uf');
         $curriculo->cidade = $req->input('cidade');
         $curriculo->telefone = $req->input('tel');
+        $curriculo->rd = $req->input('rd');
+        $curriculo->atividades = $req->input('atividades');
+        $curriculo->xp = $req->input('xp');
         $curriculo->id_user = $id_user;
         
         if($files){
-            $filename = $file->getClientOriginalName();
-            $file->storeAs($pathUp, $filename);
+            $filename = $files->getClientOriginalName();
+            $files->move(Storage_path().'/'.$pathUp, $filename);
+            // Storage::putFileAs($pathUp, new File($files), $filename);
             $curriculo->arquivo = $filename;
         }
         
@@ -90,5 +95,11 @@ class CurriculoController extends Controller
         }else{
             return redirect('/registrarcv');
         }
+    }
+    
+    public function perfil($id){
+        $c = DB::table('curriculos')->where('id', $id)->first();
+        
+        return view('users/perfil')->with(['c'=>$c]);
     }
 }

@@ -27,6 +27,9 @@ class CreateCurriculosTable extends Migration
             $table->string('cidade');
             $table->string('telefone');
             $table->string('arquivo');
+            $table->longText('rd')->nullable();
+            $table->longText('atividades')->nullable();
+            $table->longText('xp')->nullable();
             $table->integer('id_user')->unsigned();
             $table->foreign('id_user')->references('id')->on('users');
             $table->timestamps();

@@ -242,3 +242,7 @@ body {
 .panel-body {
     padding: 0 15px;
 }
+legend {
+    text-align: left;
+    padding-left: 240px;
+}
