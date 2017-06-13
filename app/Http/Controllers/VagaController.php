@@ -41,20 +41,22 @@ class VagaController extends Controller
         $crit = $txt? $txt: '';
         $data = array();
         $cdt = array();
+        $i = 0;
         $vagas = DB::table('vagas')->orderBy('updated_at', 'DESC')->where('titulo', 'like', '%'.$crit.'%')->get();
         if(Isset(Auth::user()->is_admin) && Auth::user()->is_admin){
-            foreach($vagas as $vaga){
-                $uv = DB::table('usuario_vagas')->where('id_vaga', $vaga->id)->get();
-                $uvCount = count($uv);
-                
-                foreach($uv as $u){
-                    $cv = DB::table('curriculos')->where('id', $u->id_cv)->get();
-                    foreach($cv as $c){
-                        array_push($cdt, $c);
-                    }
-                }
-                array_push($data, ['data' =>['vaga' => $vaga, 'num' => $uvCount, 'candidatos' => $cdt]]);
-            }
+        	foreach($vagas as $vaga){
+        		$uv = DB::table('usuario_vagas')->where('id_vaga', $vaga->id)->get();
+        		$uvCount = count($uv);
+        		
+        		foreach($uv as $u){
+        			$cv = DB::table('curriculos')->where('id', $u->id_cv)->get();
+        			foreach($cv as $c){
+        				array_push($cdt,[$i => $c]);
+        			}
+        		}
+        		array_push($data, [$i => ['vaga' => $vaga, 'num' => $uvCount, 'candidatos' => $cdt[$i]]]);
+        		$i++;
+        	}
             die(json_encode($data));
         }
         die(json_encode($vagas));

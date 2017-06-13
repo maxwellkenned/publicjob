@@ -45,22 +45,24 @@ function getVaga(search){
     $.get(url, function(data){
         var html='<ul class="vagas" style="max-height:350px;"><div class="row">';	
         $.each(JSON.parse(data), function(i, item){
-                html += '<div class="vaga" onmousemove="showBody('+item.data.vaga.id+')" onmouseout="hideBody('+item.data.vaga.id+')" >';
+            console.log(i);
+            console.log(item);
+                html += '<div class="vaga" onmousemove="showBody('+item[i].vaga.id+')" onmouseout="hideBody('+item[i].vaga.id+')" >';
                     html += '<div class="col-md-8 vaga">';
-                        html += '<div id="vaga-'+item.data.vaga.id+'" class="cabecalho-vaga" >';
-                                html += '<div class="vaga title-vaga"><h3><a href="/vaga/'+item.data.vaga.id+'">'+item.data.vaga.titulo+'</a></h3></div>';
-                                html += '<div class="vaga empresa-vaga">Empresa: &nbsp;'+item.data.vaga.empresa+'</div>';
-                                html += '<div class="vaga date-vaga">Período: &nbsp;'+formatarData(item.data.vaga.dt_ini)+' a '+formatarData(item.data.vaga.dt_fin)+'</div>';
+                        html += '<div id="vaga-'+item[i].vaga.id+'" class="cabecalho-vaga" >';
+                                html += '<div class="vaga title-vaga"><h3><a href="/vaga/'+item[i].vaga.id+'">'+item[i].vaga.titulo+'</a></h3></div>';
+                                html += '<div class="vaga empresa-vaga">Empresa: &nbsp;'+item[i].vaga.empresa+'</div>';
+                                html += '<div class="vaga date-vaga">Período: &nbsp;'+formatarData(item[i].vaga.dt_ini)+' a '+formatarData(item[i].vaga.dt_fin)+'</div>';
                         html += '</div>';
-                        html += '<div id="corpo-vaga-'+item.data.vaga.id+'"  style="display:none;">';
+                        html += '<div id="corpo-vaga-'+item[i].vaga.id+'"  style="display:none;">';
                                 html += '<span>Candidatos:</span>'
-                                $.each(item.data.candidatos, function(i, c){
+                                $.each(item[i].candidatos, function(i, c){
                                     html += '<div class="vaga jornada-vaga"><a href="/candidato/'+c.id+'">'+c.nome+'</a></div>';
                                 });
                         html += '</div>';
                     html += '</div>';
                     html += '<div class="col-md-4 enviar-cv" id="btn-vaga">';
-                            html += '<a href="/vaga/'+item.data.vaga.id+'" class="btn btn-warning btn-block enviar-cv">Candidatos <span class="badge">'+item.data.num+'</span></a>';
+                            html += '<a href="/vaga/'+item[i].vaga.id+'" class="btn btn-warning btn-block enviar-cv">Candidatos <span class="badge">'+item[i].num+'</span></a>';
                     html += '</div>';
                 html += '</div>';
         });
